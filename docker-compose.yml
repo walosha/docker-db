@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  mssql-db:
+      image: "mcr.microsoft.com/mssql/server"
+      env_file:
+        - ./.env
+      ports:
+        - "8033:1433"
