@@ -7,3 +7,8 @@ services:
         - ./.env
       ports:
         - "8033:1433"
+      volumes:
+        - mssql_volume:/var/opt/mssql
+
+volumes:
+  mssql_volume: ~
