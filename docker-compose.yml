@@ -3,7 +3,7 @@ version: "3.7"
 services:
   mssql-db:
       container_name: mssql_db
-      image: "mcr.microsoft.com/mssql/server:2017-latest"
+      image: "mcr.microsoft.com/mssql/server:2019"
       env_file:
         - ./.env
       ports:
