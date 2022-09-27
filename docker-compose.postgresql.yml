@@ -22,7 +22,7 @@ services:
       - pg2_data:/var/lib/postgresql/data
 
   pg3:
-    container_name: pg2
+    container_name: pg3
     image: postgres:14.1-alpine
     env_file:
       - ./.env
