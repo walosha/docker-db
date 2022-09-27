@@ -1,48 +1,38 @@
 version: "3.7"
 
 services:
-  postgres-db:
-    container_name: postgres_db
+  pg1:
+    container_name: pg1
     image: postgres:14.1-alpine
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    env_file:
+      - ./.env
     ports:
-      - "5432:5432"
+      - "15000:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pg1_data:/var/lib/postgresql/data
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: always
+  pg2:
+    container_name: pg2
+    image: postgres:14.1-alpine
+    env_file:
+      - ./.env
     ports:
-      - 5050:80
+      - "15001:5432"
     volumes:
-      - pgadmin_data:/root/.pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@prunedge.com
-      - PGADMIN_DEFAULT_PASSWORD=admin1234
+      - pg2_data:/var/lib/postgresql/data
 
-  adminer:
-    image: adminer
-    restart: always
+  pg3:
+    container_name: pg2
+    image: postgres:14.1-alpine
+    env_file:
+      - ./.env
     ports:
-      - 8080:8080
-
-  portainer:
-    image: portainer/portainer-ce
-    container_name: portainer
-    restart: always
-    ports:
-      - 8080:8000
-      - 9090:9000
+      - "15002:5432"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - pg2_data:/var/lib/postgresql/data
 
 volumes:
-  portainer_data:
-  postgres_data:
-  pgadmin_data:
+  pg1:
+  pg2:
+  pg3:
+
