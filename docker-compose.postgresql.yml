@@ -29,10 +29,10 @@ services:
     ports:
       - "15002:5432"
     volumes:
-      - pg2_data:/var/lib/postgresql/data
+      - pg3_data:/var/lib/postgresql/data
 
 volumes:
-  pg1:
-  pg2:
-  pg3:
+  pg1_data:
+  pg2_data:
+  pg3_data:
 
