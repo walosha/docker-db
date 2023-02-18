@@ -8,6 +8,23 @@ services:
       - 27017:27017
     volumes:
       - mongo_data:/data/db
+  mongo-db2:
+    image: mvertes/alpine-mongo
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    networks:
+      - backend 
+  node_db:
+    container_name: mongo
+    image: 'bitnami/mongodb:latest'
+    restart: always
+    ports:
+      - '27017:27017'
+    env_file:
+      - ./.env
+    volumes:
+      - node_db_data:/data/db      
 
 
 volumes:
