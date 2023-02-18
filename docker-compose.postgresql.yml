@@ -1,17 +1,19 @@
 version: "3.7"
 
 services:
-  pg1:
-    container_name: pg1
-    image: postgres:14.1-alpine
+ 
+  node_db:
+    container_name: mongo
+    image: 'bitnami/mongodb:latest'
+    restart: always
+    ports:
+      - '27017:27017'
     env_file:
       - ./.env
-    ports:
-      - "15000:5432"
     volumes:
-      - pg1_data:/var/lib/postgresql/data
+      - node_db_data:/data/db
 
-  pg2:
+  node_db2:
     container_name: pg2
     image: postgres:14.1-alpine
     env_file:
@@ -21,18 +23,6 @@ services:
     volumes:
       - pg2_data:/var/lib/postgresql/data
 
-  pg3:
-    container_name: pg3
-    image: postgres:14.1-alpine
-    env_file:
-      - ./.env
-    ports:
-      - "15002:5432"
-    volumes:
-      - pg3_data:/var/lib/postgresql/data
-
 volumes:
-  pg1_data:
-  pg2_data:
-  pg3_data:
-
+  node_db:
+  node_db2:
